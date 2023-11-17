@@ -49,8 +49,8 @@ export default function SearchParamClientPage() {
           width="2xs"
           items={items}
           onValueChange={({ value }) => {
-            console.log(value);
-            router.push(`/search-param?city=${value}`);
+            console.log(value[0]);
+            router.push(`/search-param?city=${value[0]}`);
           }}
         >
           <Select.Label>City</Select.Label>
