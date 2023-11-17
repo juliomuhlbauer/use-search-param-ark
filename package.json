@@ -1,0 +1,29 @@
+{
+  "name": "@park-ui/examples-react-next-js",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@ark-ui/react": "1.0.0",
+    "lucide-react": "^0.292.0",
+    "next": "13.5.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@pandacss/dev": "0.18.0",
+    "@park-ui/panda-preset": "0.22.0",
+    "@types/node": "20.4.9",
+    "@types/react": "18.2.37",
+    "@types/react-dom": "18.2.15",
+    "eslint": "8.53.0",
+    "eslint-config-next": "14.0.1",
+    "typescript": "5.2.2"
+  }
+}
