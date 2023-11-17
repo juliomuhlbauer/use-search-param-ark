@@ -17,10 +17,10 @@ type Item = {
 };
 
 export default function SearchParamClientPage() {
-  const searchParam = useSearchParams();
+  const searchParams = useSearchParams();
   const router = useRouter();
 
-  const selectedCity = searchParam.get("city");
+  const selectedCity = searchParams.get("city");
 
   console.log(selectedCity);
 
@@ -38,25 +38,24 @@ export default function SearchParamClientPage() {
 
         <Heading>{selectedCity}</Heading>
 
-        {/* {items.map((item) => (
-          <Link key={item.value} href={`/search-param?framework=${item.value}`}>
-            {item.label}
-          </Link>
-        ))} */}
-
         <Select.Root
           positioning={{ sameWidth: true }}
           width="2xs"
           items={items}
+          defaultValue={selectedCity ? [selectedCity] : []}
           onValueChange={({ value }) => {
             console.log(value[0]);
+            const params = new URLSearchParams(searchParams);
+
+            params.set("city", value[0]);
+
             router.push(`/search-param?city=${value[0]}`);
           }}
         >
           <Select.Label>City</Select.Label>
           <Select.Control>
             <Select.Trigger>
-              <Select.ValueText placeholder="Select a Framework" />
+              <Select.ValueText placeholder="Select a city" />
               <ChevronsUpDownIcon />
             </Select.Trigger>
           </Select.Control>
