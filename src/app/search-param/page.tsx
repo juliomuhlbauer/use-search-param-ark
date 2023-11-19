@@ -49,7 +49,7 @@ export default function SearchParamClientPage() {
 
             params.set("city", value[0]);
 
-            router.push(`/search-param?city=${params.toString()}`);
+            router.push(`/search-param?${params.toString()}`);
           }}
         >
           <Select.Label>City</Select.Label>
