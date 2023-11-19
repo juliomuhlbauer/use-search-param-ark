@@ -22,7 +22,7 @@ export default function SearchParamClientPage() {
 
   const selectedCity = searchParams.get("city");
 
-  console.log(selectedCity);
+  console.log("search param value:", selectedCity);
 
   const items = CITIES.map((city) => {
     return {
@@ -44,7 +44,7 @@ export default function SearchParamClientPage() {
           items={items}
           defaultValue={selectedCity ? [selectedCity] : []}
           onValueChange={({ value }) => {
-            console.log(value[0]);
+            console.log("changed to:", value[0]);
             const params = new URLSearchParams(searchParams);
 
             params.set("city", value[0]);
