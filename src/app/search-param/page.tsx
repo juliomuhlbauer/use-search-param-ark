@@ -61,9 +61,9 @@ export default function SearchParamClientPage() {
           </Select.Control>
           <Portal>
             <Select.Positioner>
-              <Select.Content>
+              <Select.Content overflow="auto" h="fit-content" maxH={300}>
                 {items.map((item) => (
-                  <Select.Item key={item.value} item={item}>
+                  <Select.Item key={item.value} item={item} py={4}>
                     <Select.ItemText>{item.label}</Select.ItemText>
                     <Select.ItemIndicator>
                       <CheckIcon />
