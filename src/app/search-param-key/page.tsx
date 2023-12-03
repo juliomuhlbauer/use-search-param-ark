@@ -6,9 +6,9 @@ import { Container, Stack } from "styled-system/jsx";
 import { Portal } from "@ark-ui/react";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 
+import { Heading, Select } from "~/components/ui";
 import { CITIES } from "cities";
 import { useRouter } from "next/navigation";
-import { Heading, Select } from "~/components/ui";
 
 type Item = {
   label: string;
@@ -16,20 +16,22 @@ type Item = {
   disabled?: boolean;
 };
 
+const items = CITIES.map((city) => {
+  return {
+    label: city.city,
+    value: city.city,
+  };
+});
+
 export default function SearchParamClientPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const selectedCity = searchParams.get("city");
 
-  console.log("search param value:", selectedCity);
+  const defaultValue = selectedCity ? [selectedCity] : [];
 
-  const items = CITIES.map((city) => {
-    return {
-      label: city.city,
-      value: city.city,
-    };
-  });
+  console.log("search param value:", defaultValue);
 
   return (
     <Container>
@@ -42,14 +44,15 @@ export default function SearchParamClientPage() {
           positioning={{ sameWidth: true }}
           width="2xs"
           items={items}
-          value={selectedCity ? [selectedCity] : []}
+          key={selectedCity}
+          defaultValue={defaultValue}
           onValueChange={({ value }) => {
             console.log("changed to:", value[0]);
             const params = new URLSearchParams(searchParams);
 
             params.set("city", value[0]);
 
-            router.push(`/search-param?${params.toString()}`);
+            router.push(`/search-param-key?${params.toString()}`);
           }}
         >
           <Select.Label>City</Select.Label>
