@@ -3,10 +3,12 @@
 import { useSearchParams } from "next/navigation";
 import { Container, Stack } from "styled-system/jsx";
 
+import * as Select from "@radix-ui/react-select";
 import { CITIES } from "cities";
+import { CheckIcon, ChevronDownIcon, ChevronUpIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Select } from "~/components/radix/select";
 import { Heading } from "~/components/ui";
+import "./styles.css";
 
 type Item = {
   label: string;
@@ -47,16 +49,37 @@ export default function SearchParamClientPage() {
             router.push(`/search-param-radix?${params.toString()}`);
           }}
         >
-          <Select.Trigger aria-label="City">
+          <Select.Trigger className="SelectTrigger" aria-label="City">
             <Select.Value placeholder="Select a city" />
+            <Select.Icon className="SelectIcon" />
           </Select.Trigger>
-          <Select.Content maxH={300}>
-            {items.map((item) => (
-              <Select.Item key={item.value} value={item.value}>
-                {item.label}
-              </Select.Item>
-            ))}
-          </Select.Content>
+
+          <Select.Portal>
+            <Select.Content className="SelectContent">
+              <Select.ScrollUpButton className="SelectScrollButton">
+                <ChevronUpIcon />
+              </Select.ScrollUpButton>
+
+              <Select.Viewport className="SelectViewport">
+                {items.map((item) => (
+                  <Select.Item
+                    key={item.value}
+                    value={item.value}
+                    className="SelectItem"
+                  >
+                    <Select.ItemText>{item.label}</Select.ItemText>
+                    <Select.ItemIndicator className="SelectItemIndicator">
+                      <CheckIcon />
+                    </Select.ItemIndicator>
+                  </Select.Item>
+                ))}
+              </Select.Viewport>
+
+              <Select.ScrollDownButton className="SelectScrollButton">
+                <ChevronDownIcon />
+              </Select.ScrollDownButton>
+            </Select.Content>
+          </Select.Portal>
         </Select.Root>
       </Stack>
     </Container>
