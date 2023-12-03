@@ -1,5 +1,5 @@
 import { defineConfig } from "@pandacss/dev";
-import { select } from "~/components/radix/recipe";
+import { select as radixSelect } from "~/components/radix/recipe";
 
 export default defineConfig({
   preflight: true,
@@ -7,7 +7,7 @@ export default defineConfig({
   include: ["./src/**/*.{js,jsx,ts,tsx}", "./pages/**/*.{js,jsx,ts,tsx}"],
   exclude: [],
   theme: {
-    extend: { slotRecipes: { select } },
+    extend: { slotRecipes: { radixSelect } },
   },
   jsxFramework: "react",
   outdir: "styled-system",

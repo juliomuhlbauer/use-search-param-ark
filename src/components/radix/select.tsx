@@ -5,9 +5,9 @@ import { createStyleContext } from "@shadow-panda/style-context";
 import { Check, ChevronDown } from "lucide-react";
 import * as React from "react";
 import { styled } from "styled-system/jsx";
-import { icon, select } from "styled-system/recipes";
+import { icon, radixSelect } from "styled-system/recipes";
 
-const { withProvider, withContext } = createStyleContext(select);
+const { withProvider, withContext } = createStyleContext(radixSelect);
 
 const Trigger = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Trigger>,
