@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@ariakit/react':
+    specifier: ^0.3.8
+    version: 0.3.8(react-dom@18.2.0)(react@18.2.0)
   '@ark-ui/react':
     specifier: 1.0.0
     version: 1.0.0(@internationalized/date@3.5.0)(react-dom@18.2.0)(react@18.2.0)
@@ -66,6 +69,34 @@ packages:
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.20
+
+  /@ariakit/core@0.3.7:
+    resolution: {integrity: sha512-xp3+vofiIzXAocQIDx6vEQk0u2fgqn474NjM90mNCd9Kz7hi6Ks/VJwOlRaNV1oJyuPJALd6Mc6kUjz/fJRfow==}
+    dev: false
+
+  /@ariakit/react-core@0.3.8(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-uWCpUSYvehrY6hiU+wUbtAPmQ21yfEgzaw2THhU9sAIMXFxceV1f2MSbKdeuQ8lgumkNGh14N1r5uR4VbujGPQ==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@ariakit/core': 0.3.7
+      '@floating-ui/dom': 1.5.3
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      use-sync-external-store: 1.2.0(react@18.2.0)
+    dev: false
+
+  /@ariakit/react@0.3.8(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-3nvjL2RSTiWjFsaTeRm5/RBZjGsMAUMPdxne1LNTFpwVEwbgVUDnoTsf1yQp9TwB1cldHDJiDDSKC4Cvza7YfA==}
+    peerDependencies:
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+    dependencies:
+      '@ariakit/react-core': 0.3.8(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /@ark-ui/anatomy@1.0.0(@internationalized/date@3.5.0):
     resolution: {integrity: sha512-sXG4wucL9hQqbvQwJs8//DpIsFU2QtOKdUy0KffW0cr/WUgxzHVNaGfcQP0eaSVKAeavcs2qk1NaMmem5Q7YLw==}
@@ -7313,6 +7344,14 @@ packages:
       detect-node-es: 1.1.0
       react: 18.2.0
       tslib: 2.6.2
+    dev: false
+
+  /use-sync-external-store@1.2.0(react@18.2.0):
+    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /util-deprecate@1.0.2:
