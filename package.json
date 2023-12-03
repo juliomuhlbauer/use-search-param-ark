@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ariakit/react": "^0.3.8",
-    "@ark-ui/react": "1.0.0",
+    "@ark-ui/react": "1.1.0",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-select": "^2.0.0",
     "lucide-react": "^0.292.0",
