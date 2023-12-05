@@ -37,13 +37,13 @@ function Select({
       id: useId(),
       collection,
       value: value ? [value] : undefined,
-      onValueChange: (details) => {
-        const cityValue = details.value[0];
+      // onValueChange: (details) => {
+      //   const cityValue = details.value[0];
 
-        console.log("changed to:", cityValue);
+      //   console.log("changed to:", cityValue);
 
-        setValue(details.value[0]);
-      },
+      //   setValue(details.value[0]);
+      // },
     })
   );
 
@@ -105,7 +105,7 @@ export default function SearchParamClientPage() {
   console.log("value updated:", city);
 
   return (
-    <Container>
+    <Container maxW="lg">
       <Stack>
         <Heading>{city}</Heading>
 
@@ -117,7 +117,7 @@ export default function SearchParamClientPage() {
           Change to {CITIES[1].city}
         </Button>
 
-        <Select key={city} value={city} setValue={setCity} />
+        <Select value={city} setValue={setCity} />
       </Stack>
     </Container>
   );
