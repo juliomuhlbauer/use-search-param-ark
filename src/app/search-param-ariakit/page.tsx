@@ -33,12 +33,13 @@ export default function SearchParamClientPage() {
         <Heading>{selectedCity}</Heading>
 
         <Ariakit.SelectProvider
-          value={selectedCity ? [selectedCity] : []}
-          setValue={([value]) => {
-            console.log("changed to:", value);
+          value={selectedCity || undefined}
+          setValue={(value) => {
+            const cityValue = Array.isArray(value) ? value[0] : value;
+            console.log("changed to:", cityValue);
             const params = new URLSearchParams(searchParams);
 
-            params.set("city", value);
+            params.set("city", cityValue);
 
             router.push(`/search-param-ariakit?${params.toString()}`);
           }}
