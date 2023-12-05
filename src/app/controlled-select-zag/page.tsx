@@ -107,8 +107,6 @@ export default function SearchParamClientPage() {
   return (
     <Container>
       <Stack>
-        <h1>Search Param</h1>
-
         <Heading>{city}</Heading>
 
         <Button variant="outline" onClick={() => setCity(CITIES[0].city)}>
@@ -119,7 +117,7 @@ export default function SearchParamClientPage() {
           Change to {CITIES[1].city}
         </Button>
 
-        <Select value={city} setValue={setCity} />
+        <Select key={city} value={city} setValue={setCity} />
       </Stack>
     </Container>
   );
