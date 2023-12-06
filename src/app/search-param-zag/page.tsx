@@ -139,7 +139,6 @@ export default function SearchParamClientPage() {
         </Stack>
 
         <Select
-          key={selectedCity}
           value={selectedCity}
           setValue={(value) => {
             router.push(`/search-param-zag?city=${value}`);
