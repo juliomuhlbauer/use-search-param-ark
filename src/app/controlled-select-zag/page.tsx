@@ -44,7 +44,12 @@ function Select({
 
       //   setValue(details.value[0]);
       // },
-    })
+    }),
+    {
+      context: {
+        value: value ? [value] : undefined,
+      },
+    }
   );
 
   const api = select.connect(state, send, normalizeProps);
