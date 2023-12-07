@@ -80,6 +80,8 @@ export default function SearchParamClientPage() {
     console.log("search param value:", selectedCountry);
   }, [selectedCountry]);
 
+  console.log(selectedCountry);
+
   return (
     <>
       <h1>{selectedCountry}</h1>
