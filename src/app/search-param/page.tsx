@@ -23,7 +23,7 @@ const items = CITIES.map((city) => {
     label: city.city,
     value: city.city,
   };
-}).splice(0, 5);
+});
 
 export default function SearchParamClientPage() {
   const searchParams = useSearchParams();
