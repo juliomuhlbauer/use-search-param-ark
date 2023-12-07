@@ -1,8 +1,10 @@
 "use client";
+import { Portal } from "@ark-ui/react";
+import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { Button } from "~/components/ui/button";
-import * as Select from "~/components/ui/select";
+import { Select } from "~/components/ui/select";
 
 const items = [
   {
@@ -51,29 +53,40 @@ export const MySelect = () => {
   return (
     <div>
       <Select.Root
+        positioning={{ sameWidth: true }}
+        width="2xs"
         items={items}
         value={value ? [value] : []}
-        onValueChange={(x) => console.log(x)}
+        // onValueChange={({ value }) => {
+        //   console.log("changed to:", value[0]);
+        //   const params = new URLSearchParams(searchParams);
+
+        //   params.set("city", value[0]);
+
+        //   router.push(`/search-param?${params.toString()}`);
+        // }}
       >
-        <Select.Label>Framework</Select.Label>
+        <Select.Label>City</Select.Label>
         <Select.Control>
-          <Select.ValueText placeholder="Select a Country" />
+          <Select.Trigger>
+            <Select.ValueText placeholder="Select a city" />
+            <ChevronsUpDownIcon />
+          </Select.Trigger>
         </Select.Control>
-        <Select.Positioner>
-          <Select.Content>
-            <Select.ItemGroup id="framework">
-              <Select.ItemGroupLabel htmlFor="framework">
-                Frameworks
-              </Select.ItemGroupLabel>
+        <Portal>
+          <Select.Positioner>
+            <Select.Content overflow="auto" h="fit-content" maxH={300}>
               {items.map((item) => (
-                <Select.Item key={item.value} item={item}>
+                <Select.Item key={item.value} item={item} py={4}>
                   <Select.ItemText>{item.label}</Select.ItemText>
-                  <Select.ItemIndicator>✓</Select.ItemIndicator>
+                  <Select.ItemIndicator>
+                    <CheckIcon />
+                  </Select.ItemIndicator>
                 </Select.Item>
               ))}
-            </Select.ItemGroup>
-          </Select.Content>
-        </Select.Positioner>
+            </Select.Content>
+          </Select.Positioner>
+        </Portal>
       </Select.Root>
       <p>Search: {value}</p>
       <Button

@@ -8,7 +8,8 @@ import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 
 import { CITIES } from "cities";
 import { useRouter } from "next/navigation";
-import { Heading, Select } from "~/components/ui";
+import { Heading } from "~/components/ui/heading";
+import { Select } from "~/components/ui/select";
 
 type Item = {
   label: string;
