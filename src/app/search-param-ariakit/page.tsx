@@ -1,47 +1,67 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Container, Stack } from "styled-system/jsx";
 
-import { CITIES } from "cities";
-import { useRouter } from "next/navigation";
-import { Heading } from "~/components/ui";
+import { Heading } from "~/components/ui/heading";
 
 import * as Ariakit from "@ariakit/react";
+import { COUNTRIES } from "countries";
+import { useEffect, useState } from "react";
 import "./style.css";
 
-export default function SearchParamClientPage() {
+export default function AriaKitExample() {
+  const [itemsSize, setItemsSize] = useState(10);
+
+  const items = COUNTRIES.slice(0, itemsSize);
+
+  return (
+    <Stack>
+      <label>Items size: {itemsSize}</label>
+      <input
+        type="range"
+        max={COUNTRIES.length}
+        value={itemsSize}
+        onChange={(e) => setItemsSize(Number(e.target.value))}
+      />
+
+      <AriaKitSelect items={items} />
+    </Stack>
+  );
+}
+
+export function AriaKitSelect({
+  items,
+}: {
+  items: {
+    label: string;
+    value: string;
+  }[];
+}) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
 
-  const selectedCity = searchParams.get("city");
+  const selectedCountry = searchParams.get("country");
 
-  console.log("search param value:", selectedCity);
-
-  const items = CITIES.map((city) => {
-    return {
-      label: city.city,
-      value: city.city,
-    };
-  });
+  useEffect(() => {
+    console.log("search param value:", selectedCountry);
+  }, [selectedCountry]);
 
   return (
     <Container>
       <Stack>
         <h1>Search Param</h1>
 
-        <Heading>{selectedCity}</Heading>
+        <Heading>{selectedCountry}</Heading>
 
         <Ariakit.SelectProvider
-          value={selectedCity || undefined}
+          value={selectedCountry || undefined}
           setValue={(value) => {
-            const cityValue = Array.isArray(value) ? value[0] : value;
-            console.log("changed to:", cityValue);
-            const params = new URLSearchParams(searchParams);
+            const countryValue = Array.isArray(value) ? value[0] : value;
+            console.log("changed to:", countryValue);
 
-            params.set("city", cityValue);
-
-            router.push(`/search-param-ariakit?${params.toString()}`);
+            router.push(`${pathname}?country=${countryValue}`);
           }}
         >
           <Ariakit.Select className="button" />
