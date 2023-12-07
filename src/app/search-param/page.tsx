@@ -8,8 +8,9 @@ import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 
 import { CITIES } from "cities";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { Heading } from "~/components/ui/heading";
-import { Select } from "~/components/ui/select";
+import * as Select from "~/components/ui/new-select";
 
 type Item = {
   label: string;
@@ -17,20 +18,22 @@ type Item = {
   disabled?: boolean;
 };
 
+const items = CITIES.map((city) => {
+  return {
+    label: city.city,
+    value: city.city,
+  };
+}).splice(0, 5);
+
 export default function SearchParamClientPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
   const selectedCity = searchParams.get("city");
 
-  console.log("search param value:", selectedCity);
-
-  const items = CITIES.map((city) => {
-    return {
-      label: city.city,
-      value: city.city,
-    };
-  });
+  useEffect(() => {
+    console.log("search param value:", selectedCity);
+  }, [selectedCity]);
 
   return (
     <Container>
@@ -46,11 +49,11 @@ export default function SearchParamClientPage() {
           value={selectedCity ? [selectedCity] : []}
           onValueChange={({ value }) => {
             console.log("changed to:", value[0]);
-            const params = new URLSearchParams(searchParams);
+            // const params = new URLSearchParams(searchParams);
 
-            params.set("city", value[0]);
+            // params.set("city", value[0]);
 
-            router.push(`/search-param?${params.toString()}`);
+            router.push(`/search-param?city=${value[0]}`);
           }}
         >
           <Select.Label>City</Select.Label>
