@@ -1,6 +1,6 @@
 "use client";
 import { CITIES } from "cities";
-import { ChevronsUpDownIcon } from "lucide-react";
+import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { Button } from "~/components/ui/button";
@@ -53,20 +53,21 @@ export const MySelect = () => {
             <ChevronsUpDownIcon />
           </Select.Trigger>
         </Select.Control>
-        {/* <Portal>
-          <Select.Positioner>
-            <Select.Content overflow="auto" h="fit-content" maxH={300}>
-              {items.map((item) => (
-                <Select.Item key={item.value} item={item} py={4}>
-                  <Select.ItemText>{item.label}</Select.ItemText>
-                  <Select.ItemIndicator>
-                    <CheckIcon />
-                  </Select.ItemIndicator>
-                </Select.Item>
-              ))}
-            </Select.Content>
-          </Select.Positioner>
-        </Portal> */}
+
+        {/* <Portal> */}
+        <Select.Positioner>
+          <Select.Content overflow="auto" h="fit-content" maxH={300}>
+            {items.map((item) => (
+              <Select.Item key={item.value} item={item} py={4}>
+                <Select.ItemText>{item.label}</Select.ItemText>
+                <Select.ItemIndicator>
+                  <CheckIcon />
+                </Select.ItemIndicator>
+              </Select.Item>
+            ))}
+          </Select.Content>
+        </Select.Positioner>
+        {/* </Portal> */}
       </Select.Root>
       <p>Search: {value}</p>
       <Button
