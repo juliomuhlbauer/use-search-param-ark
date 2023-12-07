@@ -5,9 +5,10 @@ import { Container, Stack } from "styled-system/jsx";
 
 import { Heading } from "~/components/ui/heading";
 
-import * as Ariakit from "@ariakit/react";
+import * as Select from "@ariakit/react/select";
 import { COUNTRIES } from "countries";
 import { useEffect, useState } from "react";
+import { Button } from "~/components/ui/button";
 import "./style.css";
 
 export default function AriaKitExample() {
@@ -57,7 +58,7 @@ function AriaKitSelect({
 
         <Heading>{selectedCountry}</Heading>
 
-        <Ariakit.SelectProvider
+        <Select.SelectProvider
           value={selectedCountry || undefined}
           setValue={(value) => {
             const countryValue = Array.isArray(value) ? value[0] : value;
@@ -66,17 +67,30 @@ function AriaKitSelect({
             router.push(`${pathname}?country=${countryValue}`);
           }}
         >
-          <Ariakit.Select className="button" />
-          <Ariakit.SelectPopover gutter={4} sameWidth className="popover">
+          <Select.Select className="button" />
+          <Select.SelectPopover gutter={4} sameWidth className="popover">
             {items.map((item) => (
-              <Ariakit.SelectItem
+              <Select.SelectItem
                 key={item.value}
                 className="select-item"
                 value={item.value}
               />
             ))}
-          </Ariakit.SelectPopover>
-        </Ariakit.SelectProvider>
+          </Select.SelectPopover>
+        </Select.SelectProvider>
+
+        <Stack>
+          {items.map((item) => (
+            <Button
+              key={item.value}
+              onClick={() => {
+                router.push(`${pathname}?country=${item.value}`);
+              }}
+            >
+              Change to {item.label}
+            </Button>
+          ))}
+        </Stack>
       </Stack>
     </Container>
   );
