@@ -1,7 +1,6 @@
 "use client";
-import { Portal } from "@ark-ui/react";
 import { CITIES } from "cities";
-import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
+import { ChevronsUpDownIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { Button } from "~/components/ui/button";
@@ -54,7 +53,7 @@ export const MySelect = () => {
             <ChevronsUpDownIcon />
           </Select.Trigger>
         </Select.Control>
-        <Portal>
+        {/* <Portal>
           <Select.Positioner>
             <Select.Content overflow="auto" h="fit-content" maxH={300}>
               {items.map((item) => (
@@ -67,7 +66,7 @@ export const MySelect = () => {
               ))}
             </Select.Content>
           </Select.Positioner>
-        </Portal>
+        </Portal> */}
       </Select.Root>
       <p>Search: {value}</p>
       <Button
