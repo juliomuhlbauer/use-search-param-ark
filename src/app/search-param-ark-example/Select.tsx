@@ -1,24 +1,37 @@
 "use client";
-import { Portal } from "@ark-ui/react";
-import { CITIES } from "cities";
-import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
+import { Portal, Select } from "@ark-ui/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
-import { Button } from "~/components/ui/button";
-import { Select } from "~/components/ui/select";
 
-const items = CITIES.map((city) => {
-  return {
-    label: city.city,
-    value: city.city,
-  };
-});
+const items = [
+  {
+    label: "Germany",
+    value: "de",
+  },
+  {
+    label: "United Kingdom",
+    value: "uk",
+  },
+  {
+    label: "France",
+    value: "fr",
+  },
+  {
+    label: "Nigeria",
+    value: "ng",
+  },
+  {
+    label: "Spain",
+    value: "es",
+  },
+];
+
 export const MySelect = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
-  const value = searchParams.get("city");
+  const value = searchParams.get("country");
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -37,57 +50,52 @@ export const MySelect = () => {
   return (
     <div>
       <Select.Root
-        positioning={{ sameWidth: true }}
-        width="2xs"
         items={items}
         value={value ? [value] : []}
-        onValueChange={({ value }) => {
-          console.log("changed to:", value[0]);
-
-          router.push(pathname + "?" + createQueryString("city", value[0]));
+        onValueChange={(details) => {
+          const cityValue = details.value[0];
+          router.push(pathname + "?" + createQueryString("country", cityValue));
         }}
       >
-        <Select.Label>City</Select.Label>
         <Select.Control>
           <Select.Trigger>
-            <Select.ValueText placeholder="Select a city" />
-            <ChevronsUpDownIcon />
+            <Select.ValueText placeholder="Select a Country" />
           </Select.Trigger>
         </Select.Control>
+
         <Portal>
           <Select.Positioner>
-            <Select.Content overflow="auto" h="fit-content" maxH={300}>
-              {items.map((item) => (
-                <Select.Item key={item.value} item={item} py={4}>
-                  <Select.ItemText>{item.label}</Select.ItemText>
-                  <Select.ItemIndicator>
-                    <CheckIcon />
-                  </Select.ItemIndicator>
-                </Select.Item>
-              ))}
+            <Select.Content style={{ backgroundColor: "white" }}>
+              <Select.ItemGroup id="framework">
+                <Select.ItemGroupLabel htmlFor="framework">
+                  Frameworks
+                </Select.ItemGroupLabel>
+                {items.map((item) => (
+                  <Select.Item key={item.value} item={item}>
+                    <Select.ItemText>{item.label}</Select.ItemText>
+                    <Select.ItemIndicator>✓</Select.ItemIndicator>
+                  </Select.Item>
+                ))}
+              </Select.ItemGroup>
             </Select.Content>
           </Select.Positioner>
         </Portal>
       </Select.Root>
       <p>Search: {value}</p>
-      <Button
+      <button
         onClick={() => {
-          router.push(
-            pathname + "?" + createQueryString("city", CITIES[0].city)
-          );
+          router.push(pathname + "?" + createQueryString("country", "uk"));
         }}
       >
-        Set City to {CITIES[0].city}
-      </Button>
-      <Button
+        Set Country to UK
+      </button>
+      <button
         onClick={() => {
-          router.push(
-            pathname + "?" + createQueryString("city", CITIES[1].city)
-          );
+          router.push(pathname + "?" + createQueryString("country", "fr"));
         }}
       >
-        Set City to {CITIES[1].city}
-      </Button>
+        Set Country to FR
+      </button>
     </div>
   );
 };
