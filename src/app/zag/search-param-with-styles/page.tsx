@@ -6,8 +6,11 @@ import { Portal, normalizeProps, useMachine } from "@zag-js/react";
 import * as select from "@zag-js/select";
 import { COUNTRIES } from "countries";
 import { useEffect, useId } from "react";
+import { select as selectStyles } from "styled-system/recipes";
 
 const items = COUNTRIES;
+
+const classes = selectStyles();
 
 function Select({
   value,
@@ -28,9 +31,9 @@ function Select({
       collection,
       value: value ? [value] : undefined,
       onValueChange: (details) => {
-        const cityValue = details.value[0];
+        const countryValue = details.value[0];
 
-        console.log("changed to:", cityValue);
+        console.log("changed to:", countryValue);
 
         setValue(details.value[0]);
       },
@@ -45,21 +48,32 @@ function Select({
   const api = select.connect(state, send, normalizeProps);
 
   return (
-    <div {...api.rootProps}>
-      <div {...api.controlProps}>
-        <label {...api.labelProps}>Label</label>
-        <button {...api.triggerProps}>
+    <div {...api.rootProps} className={classes.root}>
+      <div {...api.controlProps} className={classes.control}>
+        <label {...api.labelProps} className={classes.label}>
+          Label
+        </label>
+        <button {...api.triggerProps} className={classes.trigger}>
           {api.valueAsString || "Select a country"}
         </button>
       </div>
 
       <Portal>
-        <div {...api.positionerProps}>
-          <ul {...api.contentProps}>
+        <div {...api.positionerProps} className={classes.positioner}>
+          <ul {...api.contentProps} className={classes.content}>
             {items.map((item) => (
-              <li key={item.value} {...api.getItemProps({ item })}>
-                <span>{item.label}</span>
-                <span {...api.getItemIndicatorProps({ item })}>✓</span>
+              <li
+                key={item.value}
+                {...api.getItemProps({ item })}
+                className={classes.item}
+              >
+                <span className={classes.itemText}>{item.label}</span>
+                <span
+                  {...api.getItemIndicatorProps({ item })}
+                  className={classes.itemIndicator}
+                >
+                  ✓
+                </span>
               </li>
             ))}
           </ul>
@@ -71,8 +85,8 @@ function Select({
 
 export default function SearchParamClientPage() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const pathname = usePathname();
+  const router = useRouter();
 
   const selectedCountry = searchParams.get("country");
 
