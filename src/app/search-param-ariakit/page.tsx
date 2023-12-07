@@ -30,7 +30,7 @@ export default function AriaKitExample() {
   );
 }
 
-export function AriaKitSelect({
+function AriaKitSelect({
   items,
 }: {
   items: {
