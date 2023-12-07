@@ -57,6 +57,11 @@ export const MySelect = () => {
         width="2xs"
         items={items}
         value={value ? [value] : []}
+        onValueChange={({ value }) => {
+          console.log("changed to:", value[0]);
+
+          router.push(pathname + "?" + createQueryString("country", value[0]));
+        }}
       >
         <Select.Label>City</Select.Label>
         <Select.Control>
