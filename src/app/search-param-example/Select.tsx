@@ -1,40 +1,24 @@
 "use client";
 import { Portal } from "@ark-ui/react";
+import { CITIES } from "cities";
 import { CheckIcon, ChevronsUpDownIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { Button } from "~/components/ui/button";
 import { Select } from "~/components/ui/select";
 
-const items = [
-  {
-    label: "Germany",
-    value: "de",
-  },
-  {
-    label: "United Kingdom",
-    value: "uk",
-  },
-  {
-    label: "France",
-    value: "fr",
-  },
-  {
-    label: "Nigeria",
-    value: "ng",
-  },
-  {
-    label: "Spain",
-    value: "es",
-  },
-];
-
+const items = CITIES.map((city) => {
+  return {
+    label: city.city,
+    value: city.city,
+  };
+});
 export const MySelect = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
-  const value = searchParams.get("country");
+  const value = searchParams.get("city");
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -60,7 +44,7 @@ export const MySelect = () => {
         onValueChange={({ value }) => {
           console.log("changed to:", value[0]);
 
-          router.push(pathname + "?" + createQueryString("country", value[0]));
+          router.push(pathname + "?" + createQueryString("city", value[0]));
         }}
       >
         <Select.Label>City</Select.Label>
@@ -88,17 +72,21 @@ export const MySelect = () => {
       <p>Search: {value}</p>
       <Button
         onClick={() => {
-          router.push(pathname + "?" + createQueryString("country", "uk"));
+          router.push(
+            pathname + "?" + createQueryString("city", CITIES[0].city)
+          );
         }}
       >
-        Set Country to UK
+        Set City to {CITIES[0].city}
       </Button>
       <Button
         onClick={() => {
-          router.push(pathname + "?" + createQueryString("country", "fr"));
+          router.push(
+            pathname + "?" + createQueryString("city", CITIES[1].city)
+          );
         }}
       >
-        Set Country to FR
+        Set City to {CITIES[1].city}
       </Button>
     </div>
   );
