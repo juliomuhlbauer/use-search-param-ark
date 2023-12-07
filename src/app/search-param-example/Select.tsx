@@ -57,14 +57,6 @@ export const MySelect = () => {
         width="2xs"
         items={items}
         value={value ? [value] : []}
-        // onValueChange={({ value }) => {
-        //   console.log("changed to:", value[0]);
-        //   const params = new URLSearchParams(searchParams);
-
-        //   params.set("city", value[0]);
-
-        //   router.push(`/search-param?${params.toString()}`);
-        // }}
       >
         <Select.Label>City</Select.Label>
         <Select.Control>
