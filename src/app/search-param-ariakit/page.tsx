@@ -44,6 +44,8 @@ function AriaKitSelect({
 
   const selectedCountry = searchParams.get("country");
 
+  console.log(selectedCountry);
+
   useEffect(() => {
     console.log("search param value:", selectedCountry);
   }, [selectedCountry]);

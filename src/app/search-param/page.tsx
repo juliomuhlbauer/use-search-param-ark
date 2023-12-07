@@ -49,9 +49,6 @@ export default function SearchParamClientPage() {
           value={selectedCity ? [selectedCity] : []}
           onValueChange={({ value }) => {
             console.log("changed to:", value[0]);
-            // const params = new URLSearchParams(searchParams);
-
-            // params.set("city", value[0]);
 
             router.push(`/search-param?city=${value[0]}`);
           }}

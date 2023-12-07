@@ -50,7 +50,7 @@ function SelectWithoutItems({
     console.log("search param value:", value);
   }, [value]);
 
-  // console.log(value);
+  console.log(value);
 
   return (
     <div>
