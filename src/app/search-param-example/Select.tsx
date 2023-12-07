@@ -1,8 +1,8 @@
 "use client";
-import { Select } from "@ark-ui/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
-import { Button } from "~/components/ui";
+import { Button } from "~/components/ui/button";
+import * as Select from "~/components/ui/select";
 
 const items = [
   {
