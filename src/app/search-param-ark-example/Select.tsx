@@ -1,22 +1,37 @@
 "use client";
 import { Portal, Select } from "@ark-ui/react";
-import { CITIES } from "cities";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useCallback, useEffect } from "react";
 
-const items = CITIES.map((city) => {
-  return {
-    label: city.city,
-    value: city.city,
-  };
-});
+const items = [
+  {
+    label: "Germany",
+    value: "de",
+  },
+  {
+    label: "United Kingdom",
+    value: "uk",
+  },
+  {
+    label: "France",
+    value: "fr",
+  },
+  {
+    label: "Nigeria",
+    value: "ng",
+  },
+  {
+    label: "Spain",
+    value: "es",
+  },
+];
 
 export const MySelect = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
-  const value = searchParams.get("city");
+  const value = searchParams.get("country");
 
   const createQueryString = useCallback(
     (name: string, value: string) => {
@@ -29,7 +44,7 @@ export const MySelect = () => {
   );
 
   useEffect(() => {
-    console.log("search param value:", value);
+    console.log("searchParams", value);
   }, [value]);
 
   return (
@@ -39,19 +54,22 @@ export const MySelect = () => {
         value={value ? [value] : []}
         onValueChange={(details) => {
           const cityValue = details.value[0];
-          router.push(pathname + "?" + createQueryString("city", cityValue));
+          router.push(pathname + "?" + createQueryString("country", cityValue));
         }}
       >
         <Select.Control>
           <Select.Trigger>
-            <Select.ValueText placeholder="Select a city" />
+            <Select.ValueText placeholder="Select a Country" />
           </Select.Trigger>
         </Select.Control>
 
         <Portal>
           <Select.Positioner>
             <Select.Content style={{ backgroundColor: "white" }}>
-              <Select.ItemGroup id="city">
+              <Select.ItemGroup id="framework">
+                <Select.ItemGroupLabel htmlFor="framework">
+                  Frameworks
+                </Select.ItemGroupLabel>
                 {items.map((item) => (
                   <Select.Item key={item.value} item={item}>
                     <Select.ItemText>{item.label}</Select.ItemText>
@@ -66,21 +84,17 @@ export const MySelect = () => {
       <p>Search: {value}</p>
       <button
         onClick={() => {
-          router.push(
-            pathname + "?" + createQueryString("city", CITIES[0].city)
-          );
+          router.push(pathname + "?" + createQueryString("country", "uk"));
         }}
       >
-        Set city to {CITIES[0].city}
+        Set Country to UK
       </button>
       <button
         onClick={() => {
-          router.push(
-            pathname + "?" + createQueryString("city", CITIES[1].city)
-          );
+          router.push(pathname + "?" + createQueryString("country", "fr"));
         }}
       >
-        Set city to {CITIES[1].city}
+        Set Country to FR
       </button>
     </div>
   );
