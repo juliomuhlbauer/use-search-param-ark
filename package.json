@@ -14,10 +14,10 @@
     "@ark-ui/react": "1.1.0",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-select": "^2.0.0",
-    "@zag-js/react": "^0.31.1",
-    "@zag-js/select": "^0.31.1",
+    "@zag-js/react": "^0.32.0",
+    "@zag-js/select": "^0.32.0",
     "lucide-react": "^0.292.0",
-    "next": "14.0.4-canary.5",
+    "next": "14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
