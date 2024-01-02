@@ -124,6 +124,7 @@ function Select({
     }),
     {
       context: {
+        collection,
         value: value ? [value] : undefined,
       },
     }
